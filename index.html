@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Under Construction</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<!-- Google Font -->
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+
+<style>
+    * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        font-family: 'Poppins', sans-serif;
+    }
+
+    body {
+        min-height: 100vh;
+        background: linear-gradient(135deg, #0f2027, #203a43, #2c5364);
+        color: #fff;
+        overflow-x: hidden;
+    }
+
+    /* Logo */
+    .header {
+        position: absolute;
+        top: 20px;
+        left: 30px;
+    }
+
+    .header img {
+        height: 50px;
+    }
+
+    /* Main Card */
+    .wrapper {
+        min-height: 100vh;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 30px;
+    }
+
+    .card {
+        max-width: 900px;
+        width: 100%;
+        background: rgba(255, 255, 255, 0.08);
+        backdrop-filter: blur(12px);
+        border-radius: 20px;
+        padding: 50px 40px;
+        text-align: center;
+        box-shadow: 0 20px 40px rgba(0,0,0,0.3);
+        animation: fadeUp 1.2s ease;
+    }
+
+    .card h1 {
+        font-size: 48px;
+        font-weight: 700;
+        background: linear-gradient(90deg, #00f2fe, #4facfe);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        margin-bottom: 20px;
+        animation: glow 2.5s infinite alternate;
+    }
+
+    .card p {
+        font-size: 16px;
+        line-height: 1.7;
+        color: #dcdcdc;
+        max-width: 700px;
+        margin: 0 auto 35px auto;
+    }
+
+    /* Image */
+    .image-box {
+        max-width: 800px;
+        margin: auto;
+        animation: float 4s ease-in-out infinite;
+    }
+
+    .image-box img {
+        width: 100%;
+        aspect-ratio: 5 / 3;
+        object-fit: cover;
+        border-radius: 16px;
+        box-shadow: 0 15px 35px rgba(0,0,0,0.4);
+    }
+
+    /* Animations */
+    @keyframes fadeUp {
+        from {
+            opacity: 0;
+            transform: translateY(40px);
+        }
+        to {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    }
+
+    @keyframes glow {
+        from {
+            text-shadow: 0 0 10px rgba(79,172,254,0.5);
+        }
+        to {
+            text-shadow: 0 0 25px rgba(0,242,254,0.9);
+        }
+    }
+
+    @keyframes float {
+        0% { transform: translateY(0); }
+        50% { transform: translateY(-10px); }
+        100% { transform: translateY(0); }
+    }
+
+    /* Mobile */
+    @media (max-width: 600px) {
+        .card h1 {
+            font-size: 36px;
+        }
+        .card {
+            padding: 35px 25px;
+        }
+    }
+</style>
+</head>
+
+<body>
+
+<!-- Logo -->
+<div class="header">
+    <img src="logo_white.png" alt="Logo">
+</div>
+
+<div class="wrapper">
+    <div class="card">
+        <h1>Under Construction</h1>
+        <p>
+            This website is under construction. Till then, you can work on your ideas,
+            and once we're done, we will bring your idea to life.
+        </p>
+
+        <div class="image-box">
+            <img src="electronics.png" alt="Under Construction">
+        </div>
+    </div>
+</div>
+
+</body>
+</html>
+
+
