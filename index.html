@@ -159,74 +159,132 @@
 
 
 
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>GenesisLabs – From Idea to Reality</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <style>
+    body { margin: 0; font-family: Arial, Helvetica, sans-serif; background: #f5f6f8; }
+    header { background: #0b1c2d; color: #fff; padding: 12px 24px; display: flex; align-items: center; justify-content: space-between; }
+    header h1 { font-size: 20px; margin: 0; }
+    nav a { color: #fff; margin-left: 16px; text-decoration: none; font-size: 14px; }
+    nav a:hover { text-decoration: underline; }
+    .hero { background: linear-gradient(135deg, #102a43, #1f4e79); color: #fff; padding: 60px 24px; text-align: center; }
+    .hero h2 { font-size: 36px; margin-bottom: 12px; }
+    .hero p { font-size: 18px; max-width: 800px; margin: auto; }
+    .container { padding: 40px 24px; max-width: 1200px; margin: auto; }
+    .section-title { font-size: 28px; margin-bottom: 20px; color: #102a43; }
+    .cards { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 20px; }
+    .card { background: #fff; padding: 20px; border-radius: 8px; box-shadow: 0 4px 12px rgba(0,0,0,0.08); }
+    .card h3 { margin-top: 0; }
+    .card p { font-size: 14px; color: #444; }
+    .card a { display: inline-block; margin-top: 12px; color: #1f4e79; text-decoration: none; font-weight: bold; }
+    .card a:hover { text-decoration: underline; }
+    footer { background: #0b1c2d; color: #ccc; text-align: center; padding: 20px; font-size: 13px; }
+    .form-group { margin-bottom: 16px; }
+    label { display: block; margin-bottom: 6px; font-size: 14px; }
+    input, textarea, select { width: 100%; padding: 10px; border-radius: 4px; border: 1px solid #ccc; }
+    button { background: #1f4e79; color: #fff; border: none; padding: 10px 18px; border-radius: 4px; cursor: pointer; }
+    button:hover { background: #163a5c; }
+  </style>
+</head>
+<body>
 
-import React from "react";
+<header>
+  <h1>GenesisLabs</h1>
+  <nav>
+    <a href="#products">Products</a>
+    <a href="#printing">3D Printing</a>
+    <a href="#innovate">Innovate</a>
+    <a href="#contact">Contact</a>
+  </nav>
+</header>
 
-export default function Home() {
-  return (
-    <div className="min-h-screen bg-gray-50">
-      {/* Header */}
-      <header className="bg-white shadow-sm sticky top-0 z-50">
-        <div className="max-w-7xl mx-auto flex items-center justify-between p-4">
-          <h1 className="text-2xl font-bold text-blue-600">GenesisLabs</h1>
-          <input
-            type="text"
-            placeholder="Search products, 3D prints, ideas"
-            className="w-1/2 px-4 py-2 border rounded-lg"
-          />
-          <div className="space-x-4">
-            <button className="text-gray-700">Login</button>
-            <button className="bg-blue-600 text-white px-4 py-2 rounded-lg">Cart</button>
-          </div>
-        </div>
-      </header>
+<section class="hero">
+  <h2>From Idea to Reality</h2>
+  <p>Custom electronics, 3D printing services, and a platform to transform innovative ideas into real-world products.</p>
+</section>
 
-      {/* Hero Section */}
-      <section className="bg-gradient-to-r from-blue-600 to-indigo-600 text-white py-20">
-        <div className="max-w-7xl mx-auto text-center">
-          <h2 className="text-4xl font-bold mb-4">From Idea to Reality</h2>
-          <p className="text-lg mb-6">
-            Innovative products, 3D printing services, and idea-to-product development
-          </p>
-          <div className="space-x-4">
-            <button className="bg-white text-blue-600 px-6 py-3 rounded-xl font-semibold">
-              Explore Products
-            </button>
-            <button className="border border-white px-6 py-3 rounded-xl">
-              3D Print Your Design
-            </button>
-          </div>
-        </div>
-      </section>
-
-      {/* Services Section */}
-      <section className="max-w-7xl mx-auto py-16 grid grid-cols-1 md:grid-cols-3 gap-8">
-        <div className="bg-white p-6 rounded-2xl shadow">
-          <h3 className="text-xl font-semibold mb-2">Innovative Products</h3>
-          <p>Electronics and non-electronics innovations built in-house.</p>
-        </div>
-        <div className="bg-white p-6 rounded-2xl shadow">
-          <h3 className="text-xl font-semibold mb-2">3D Printing</h3>
-          <p>Upload your 3D file, we print and ship it to you.</p>
-        </div>
-        <div className="bg-white p-6 rounded-2xl shadow">
-          <h3 className="text-xl font-semibold mb-2">Bring Your Idea</h3>
-          <p>Have an idea? We help turn it into a real product.</p>
-        </div>
-      </section>
-
-      {/* Footer */}
-      <footer className="bg-gray-900 text-gray-300 py-8">
-        <div className="max-w-7xl mx-auto flex justify-between">
-          <p>© 2026 GenesisLabs.in</p>
-          <div className="space-x-4">
-            <span>Privacy</span>
-            <span>Terms</span>
-            <span>Contact</span>
-          </div>
-        </div>
-      </footer>
+<section id="products" class="container">
+  <h2 class="section-title">Innovative Products</h2>
+  <div class="cards">
+    <div class="card">
+      <h3>Custom Electronics</h3>
+      <p>Unique, custom-built electronic solutions designed and manufactured by GenesisLabs.</p>
+      <a href="#">View Products</a>
     </div>
-  );
-}
+    <div class="card">
+      <h3>Non-Electronic Innovations</h3>
+      <p>Creative physical products solving real-world problems.</p>
+      <a href="#">Explore</a>
+    </div>
+    <div class="card">
+      <h3>Prototype Devices</h3>
+      <p>Early-stage experimental products and engineering prototypes.</p>
+      <a href="#">See Prototypes</a>
+    </div>
+  </div>
+</section>
 
+<section id="printing" class="container">
+  <h2 class="section-title">3D Printing Service</h2>
+  <p>Upload your 3D design, choose material and quality, and receive a professionally printed part at your doorstep.</p>
+  <div class="card">
+    <form>
+      <div class="form-group">
+        <label>Upload 3D File (STL / STEP)</label>
+        <input type="file" />
+      </div>
+      <div class="form-group">
+        <label>Material</label>
+        <select>
+          <option>PLA</option>
+          <option>ABS</option>
+          <option>PETG</option>
+        </select>
+      </div>
+      <div class="form-group">
+        <label>Quantity</label>
+        <input type="number" value="1" />
+      </div>
+      <button type="button">Get Quote</button>
+    </form>
+  </div>
+</section>
+
+<section id="innovate" class="container">
+  <h2 class="section-title">Bring Your Idea to Life</h2>
+  <p>Have an innovative idea but lack resources? Submit your idea and let GenesisLabs help you build it.</p>
+  <div class="card">
+    <form>
+      <div class="form-group">
+        <label>Idea Title</label>
+        <input type="text" />
+      </div>
+      <div class="form-group">
+        <label>Idea Description</label>
+        <textarea rows="4"></textarea>
+      </div>
+      <div class="form-group">
+        <label>Attachments (optional)</label>
+        <input type="file" />
+      </div>
+      <button type="button">Submit Idea</button>
+    </form>
+  </div>
+</section>
+
+<section id="contact" class="container">
+  <h2 class="section-title">Contact Us</h2>
+  <p>Email: support@genesislabs.in</p>
+  <p>We usually respond within 24 hours.</p>
+</section>
+
+<footer>
+  © 2026 GenesisLabs.in – Engineering Innovation for Everyone
+</footer>
+
+</body>
+</html>
