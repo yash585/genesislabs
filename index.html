@@ -1,3 +1,4 @@
+<!--
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -150,5 +151,82 @@
 
 </body>
 </html>
+-->
 
+
+
+
+
+
+
+
+import React from "react";
+
+export default function Home() {
+  return (
+    <div className="min-h-screen bg-gray-50">
+      {/* Header */}
+      <header className="bg-white shadow-sm sticky top-0 z-50">
+        <div className="max-w-7xl mx-auto flex items-center justify-between p-4">
+          <h1 className="text-2xl font-bold text-blue-600">GenesisLabs</h1>
+          <input
+            type="text"
+            placeholder="Search products, 3D prints, ideas"
+            className="w-1/2 px-4 py-2 border rounded-lg"
+          />
+          <div className="space-x-4">
+            <button className="text-gray-700">Login</button>
+            <button className="bg-blue-600 text-white px-4 py-2 rounded-lg">Cart</button>
+          </div>
+        </div>
+      </header>
+
+      {/* Hero Section */}
+      <section className="bg-gradient-to-r from-blue-600 to-indigo-600 text-white py-20">
+        <div className="max-w-7xl mx-auto text-center">
+          <h2 className="text-4xl font-bold mb-4">From Idea to Reality</h2>
+          <p className="text-lg mb-6">
+            Innovative products, 3D printing services, and idea-to-product development
+          </p>
+          <div className="space-x-4">
+            <button className="bg-white text-blue-600 px-6 py-3 rounded-xl font-semibold">
+              Explore Products
+            </button>
+            <button className="border border-white px-6 py-3 rounded-xl">
+              3D Print Your Design
+            </button>
+          </div>
+        </div>
+      </section>
+
+      {/* Services Section */}
+      <section className="max-w-7xl mx-auto py-16 grid grid-cols-1 md:grid-cols-3 gap-8">
+        <div className="bg-white p-6 rounded-2xl shadow">
+          <h3 className="text-xl font-semibold mb-2">Innovative Products</h3>
+          <p>Electronics and non-electronics innovations built in-house.</p>
+        </div>
+        <div className="bg-white p-6 rounded-2xl shadow">
+          <h3 className="text-xl font-semibold mb-2">3D Printing</h3>
+          <p>Upload your 3D file, we print and ship it to you.</p>
+        </div>
+        <div className="bg-white p-6 rounded-2xl shadow">
+          <h3 className="text-xl font-semibold mb-2">Bring Your Idea</h3>
+          <p>Have an idea? We help turn it into a real product.</p>
+        </div>
+      </section>
+
+      {/* Footer */}
+      <footer className="bg-gray-900 text-gray-300 py-8">
+        <div className="max-w-7xl mx-auto flex justify-between">
+          <p>© 2026 GenesisLabs.in</p>
+          <div className="space-x-4">
+            <span>Privacy</span>
+            <span>Terms</span>
+            <span>Contact</span>
+          </div>
+        </div>
+      </footer>
+    </div>
+  );
+}
 
