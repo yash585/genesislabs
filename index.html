@@ -34,6 +34,28 @@
         height: 50px;
     }
 
+    /* Contact Button (Updated) */
+    .contact-btn {
+        position: absolute;
+        top: 20px;
+        right: 30px;
+        padding: 10px 20px;
+        background: linear-gradient(90deg, #3da1ff, #5bc0ff);
+        color: #fff;
+        text-decoration: none;
+        border-radius: 10px;
+        font-weight: 500;
+        transition: all 0.3s ease;
+        box-shadow: 0 6px 18px rgba(0, 0, 0, 0.35);
+        border: 1px solid rgba(255, 255, 255, 0.15);
+    }
+
+    .contact-btn:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 10px 25px rgba(0, 0, 0, 0.45);
+        background: linear-gradient(90deg, #5bc0ff, #3da1ff);
+    }
+
     /* Main Card */
     .wrapper {
         min-height: 100vh;
@@ -123,6 +145,13 @@
         .card {
             padding: 35px 25px;
         }
+
+        .contact-btn {
+            top: 15px;
+            right: 15px;
+            padding: 8px 16px;
+            font-size: 14px;
+        }
     }
 </style>
 </head>
@@ -133,6 +162,11 @@
 <div class="header">
     <img src="logo_white.png" alt="Logo">
 </div>
+
+<!-- Contact Button -->
+<a href="https://linkedin.com/in/yash-chavhan" target="_blank" class="contact-btn">
+    Contact
+</a>
 
 <div class="wrapper">
     <div class="card">
@@ -150,5 +184,3 @@
 
 </body>
 </html>
-
-
