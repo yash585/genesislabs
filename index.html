@@ -2,185 +2,734 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<title>Under Construction</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-<!-- Google Font -->
-<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
-
+<title>GenesisLabs — Build What Doesn't Exist Yet</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=Space+Mono:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
 <style>
-    * {
-        margin: 0;
-        padding: 0;
-        box-sizing: border-box;
-        font-family: 'Poppins', sans-serif;
-    }
+  :root {
+    --bg: #0a0a0f;
+    --surface: #111118;
+    --surface2: #18181f;
+    --border: #2a2a3a;
+    --accent: #00e5a0;
+    --accent2: #7c5cfc;
+    --accent3: #ff6b35;
+    --text: #f0f0f8;
+    --muted: #6b6b8a;
+    --font-display: 'Syne', sans-serif;
+    --font-mono: 'Space Mono', monospace;
+  }
 
-    body {
-        min-height: 100vh;
-        background: linear-gradient(135deg, #0f2027, #203a43, #2c5364);
-        color: #fff;
-        overflow-x: hidden;
-    }
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
-    /* Logo */
-    .header {
-        position: absolute;
-        top: 20px;
-        left: 30px;
-    }
+  html { scroll-behavior: smooth; }
 
-    .header img {
-        height: 50px;
-    }
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: var(--font-mono);
+    overflow-x: hidden;
+    cursor: default;
+  }
 
-    /* Contact Button (Updated) */
-    .contact-btn {
-        position: absolute;
-        top: 20px;
-        right: 30px;
-        padding: 10px 20px;
-        background: linear-gradient(90deg, #3da1ff, #5bc0ff);
-        color: #fff;
-        text-decoration: none;
-        border-radius: 10px;
-        font-weight: 500;
-        transition: all 0.3s ease;
-        box-shadow: 0 6px 18px rgba(0, 0, 0, 0.35);
-        border: 1px solid rgba(255, 255, 255, 0.15);
-    }
+  /* ── NOISE OVERLAY ── */
+  body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.04'/%3E%3C/svg%3E");
+    pointer-events: none;
+    z-index: 1000;
+    opacity: 0.5;
+  }
 
-    .contact-btn:hover {
-        transform: translateY(-2px);
-        box-shadow: 0 10px 25px rgba(0, 0, 0, 0.45);
-        background: linear-gradient(90deg, #5bc0ff, #3da1ff);
-    }
+  /* ── NAV ── */
+  nav {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    z-index: 100;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 1.2rem 3rem;
+    background: rgba(10,10,15,0.85);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--border);
+  }
 
-    /* Main Card */
-    .wrapper {
-        min-height: 100vh;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        padding: 30px;
-    }
+  .logo {
+    font-family: var(--font-display);
+    font-weight: 800;
+    font-size: 1.3rem;
+    letter-spacing: -0.02em;
+    color: var(--text);
+    text-decoration: none;
+  }
 
-    .card {
-        max-width: 900px;
-        width: 100%;
-        background: rgba(255, 255, 255, 0.08);
-        backdrop-filter: blur(12px);
-        border-radius: 20px;
-        padding: 50px 40px;
-        text-align: center;
-        box-shadow: 0 20px 40px rgba(0,0,0,0.3);
-        animation: fadeUp 1.2s ease;
-    }
+  .logo span { color: var(--accent); }
 
-    .card h1 {
-        font-size: 48px;
-        font-weight: 700;
-        background: linear-gradient(90deg, #00f2fe, #4facfe);
-        -webkit-background-clip: text;
-        -webkit-text-fill-color: transparent;
-        margin-bottom: 20px;
-        animation: glow 2.5s infinite alternate;
-    }
+  nav ul {
+    display: flex;
+    gap: 2.5rem;
+    list-style: none;
+  }
 
-    .card p {
-        font-size: 16px;
-        line-height: 1.7;
-        color: #dcdcdc;
-        max-width: 700px;
-        margin: 0 auto 35px auto;
-    }
+  nav a {
+    font-size: 0.78rem;
+    text-decoration: none;
+    color: var(--muted);
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    transition: color 0.2s;
+  }
+  nav a:hover { color: var(--accent); }
 
-    /* Image */
-    .image-box {
-        max-width: 800px;
-        margin: auto;
-        animation: float 4s ease-in-out infinite;
-    }
+  .nav-cta {
+    background: var(--accent);
+    color: #000 !important;
+    padding: 0.5rem 1.2rem;
+    font-weight: 700;
+    transition: background 0.2s, transform 0.2s !important;
+  }
+  .nav-cta:hover { background: #00ffb3 !important; transform: translateY(-1px); }
 
-    .image-box img {
-        width: 100%;
-        aspect-ratio: 5 / 3;
-        object-fit: cover;
-        border-radius: 16px;
-        box-shadow: 0 15px 35px rgba(0,0,0,0.4);
-    }
+  /* ── HERO ── */
+  .hero {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 8rem 3rem 4rem;
+    position: relative;
+    overflow: hidden;
+  }
 
-    /* Animations */
-    @keyframes fadeUp {
-        from {
-            opacity: 0;
-            transform: translateY(40px);
-        }
-        to {
-            opacity: 1;
-            transform: translateY(0);
-        }
-    }
+  .hero-grid {
+    position: absolute;
+    inset: 0;
+    background-image:
+      linear-gradient(rgba(0,229,160,0.04) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(0,229,160,0.04) 1px, transparent 1px);
+    background-size: 60px 60px;
+    mask-image: radial-gradient(ellipse 80% 60% at 50% 50%, black 40%, transparent 100%);
+  }
 
-    @keyframes glow {
-        from {
-            text-shadow: 0 0 10px rgba(79,172,254,0.5);
-        }
-        to {
-            text-shadow: 0 0 25px rgba(0,242,254,0.9);
-        }
-    }
+  .hero-glow {
+    position: absolute;
+    width: 600px; height: 600px;
+    border-radius: 50%;
+    top: 50%; left: 60%;
+    transform: translate(-50%, -50%);
+    background: radial-gradient(circle, rgba(124,92,252,0.15) 0%, transparent 70%);
+    filter: blur(40px);
+    animation: pulse-glow 4s ease-in-out infinite alternate;
+  }
 
-    @keyframes float {
-        0% { transform: translateY(0); }
-        50% { transform: translateY(-10px); }
-        100% { transform: translateY(0); }
-    }
+  @keyframes pulse-glow {
+    from { opacity: 0.5; transform: translate(-50%, -50%) scale(1); }
+    to   { opacity: 1;   transform: translate(-50%, -50%) scale(1.1); }
+  }
 
-    /* Mobile */
-    @media (max-width: 600px) {
-        .card h1 {
-            font-size: 36px;
-        }
-        .card {
-            padding: 35px 25px;
-        }
+  .hero-tag {
+    font-size: 0.72rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 1.5rem;
+    display: flex;
+    align-items: center;
+    gap: 0.8rem;
+  }
+  .hero-tag::before {
+    content: '';
+    display: block;
+    width: 32px; height: 1px;
+    background: var(--accent);
+  }
 
-        .contact-btn {
-            top: 15px;
-            right: 15px;
-            padding: 8px 16px;
-            font-size: 14px;
-        }
-    }
+  h1 {
+    font-family: var(--font-display);
+    font-size: clamp(3rem, 7vw, 6rem);
+    font-weight: 800;
+    line-height: 0.95;
+    letter-spacing: -0.03em;
+    max-width: 800px;
+    margin-bottom: 2rem;
+  }
+
+  h1 em {
+    font-style: normal;
+    color: var(--accent);
+    position: relative;
+    display: inline-block;
+  }
+
+  h1 em::after {
+    content: '';
+    position: absolute;
+    bottom: -4px; left: 0; right: 0;
+    height: 3px;
+    background: var(--accent);
+    transform: scaleX(0);
+    animation: underline-in 0.6s 0.8s forwards;
+  }
+
+  @keyframes underline-in {
+    to { transform: scaleX(1); }
+  }
+
+  .hero-sub {
+    font-size: 1rem;
+    color: var(--muted);
+    max-width: 520px;
+    line-height: 1.7;
+    margin-bottom: 3rem;
+  }
+
+  .hero-actions {
+    display: flex;
+    gap: 1rem;
+    flex-wrap: wrap;
+  }
+
+  .btn {
+    font-family: var(--font-mono);
+    font-size: 0.82rem;
+    font-weight: 700;
+    letter-spacing: 0.05em;
+    padding: 0.9rem 2rem;
+    border: none;
+    cursor: pointer;
+    text-decoration: none;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    transition: all 0.2s;
+  }
+
+  .btn-primary {
+    background: var(--accent);
+    color: #000;
+  }
+  .btn-primary:hover { background: #00ffb3; transform: translateY(-2px); }
+
+  .btn-secondary {
+    background: transparent;
+    color: var(--text);
+    border: 1px solid var(--border);
+  }
+  .btn-secondary:hover { border-color: var(--accent); color: var(--accent); }
+
+  .hero-stats {
+    position: absolute;
+    right: 3rem; bottom: 4rem;
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+  }
+
+  .stat {
+    text-align: right;
+  }
+  .stat-num {
+    font-family: var(--font-display);
+    font-size: 2.5rem;
+    font-weight: 800;
+    color: var(--text);
+    line-height: 1;
+  }
+  .stat-num span { color: var(--accent); }
+  .stat-label { font-size: 0.7rem; color: var(--muted); letter-spacing: 0.1em; text-transform: uppercase; margin-top: 0.3rem; }
+
+  /* ── SECTIONS ── */
+  section { padding: 6rem 3rem; }
+
+  .section-label {
+    font-size: 0.7rem;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 1rem;
+  }
+
+  h2 {
+    font-family: var(--font-display);
+    font-size: clamp(2rem, 4vw, 3.2rem);
+    font-weight: 800;
+    letter-spacing: -0.02em;
+    line-height: 1.05;
+    margin-bottom: 1.5rem;
+  }
+
+  /* ── SERVICES ── */
+  .services { background: var(--surface); }
+
+  .services-intro {
+    max-width: 600px;
+    margin-bottom: 4rem;
+  }
+
+  .services-intro p { color: var(--muted); line-height: 1.7; margin-top: 0.8rem; }
+
+  .services-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 1px;
+    background: var(--border);
+    border: 1px solid var(--border);
+  }
+
+  .service-card {
+    background: var(--surface);
+    padding: 2.5rem;
+    position: relative;
+    overflow: hidden;
+    transition: background 0.3s;
+  }
+  .service-card:hover { background: var(--surface2); }
+
+  .service-card::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 2px;
+    background: var(--card-accent, var(--accent));
+    transform: scaleX(0);
+    transition: transform 0.3s;
+  }
+  .service-card:hover::before { transform: scaleX(1); }
+
+  .service-card.c1 { --card-accent: var(--accent); }
+  .service-card.c2 { --card-accent: var(--accent2); }
+  .service-card.c3 { --card-accent: var(--accent3); }
+
+  .service-icon {
+    width: 48px; height: 48px;
+    margin-bottom: 1.5rem;
+    opacity: 0.9;
+  }
+
+  .service-num {
+    font-size: 0.65rem;
+    letter-spacing: 0.2em;
+    color: var(--muted);
+    text-transform: uppercase;
+    margin-bottom: 0.8rem;
+  }
+
+  .service-card h3 {
+    font-family: var(--font-display);
+    font-size: 1.4rem;
+    font-weight: 700;
+    margin-bottom: 0.8rem;
+  }
+
+  .service-card p {
+    font-size: 0.82rem;
+    color: var(--muted);
+    line-height: 1.7;
+    margin-bottom: 1.5rem;
+  }
+
+  .service-links {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+
+  .service-link {
+    font-size: 0.78rem;
+    color: var(--text);
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.5rem 0;
+    border-bottom: 1px solid var(--border);
+    transition: color 0.2s, gap 0.2s;
+  }
+  .service-link:hover { color: var(--card-accent, var(--accent)); gap: 0.8rem; }
+  .service-link:last-child { border-bottom: none; }
+
+  /* ── HOW IT WORKS ── */
+  .how { background: var(--bg); }
+
+  .how-inner { max-width: 900px; margin: 0 auto; }
+
+  .steps {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+    gap: 0;
+    margin-top: 4rem;
+    position: relative;
+  }
+
+  .steps::before {
+    content: '';
+    position: absolute;
+    top: 28px; left: 0; right: 0;
+    height: 1px;
+    background: var(--border);
+  }
+
+  .step { padding: 0 1.5rem; padding-top: 0; }
+
+  .step-dot {
+    width: 56px; height: 56px;
+    border: 1px solid var(--border);
+    background: var(--surface);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: var(--font-display);
+    font-size: 1.1rem;
+    font-weight: 800;
+    color: var(--accent);
+    margin-bottom: 1.5rem;
+    position: relative;
+    z-index: 1;
+    transition: background 0.3s, border-color 0.3s;
+  }
+
+  .step:hover .step-dot {
+    background: var(--accent);
+    color: #000;
+    border-color: var(--accent);
+  }
+
+  .step h4 {
+    font-family: var(--font-display);
+    font-size: 1rem;
+    font-weight: 700;
+    margin-bottom: 0.5rem;
+  }
+
+  .step p {
+    font-size: 0.75rem;
+    color: var(--muted);
+    line-height: 1.6;
+  }
+
+  /* ── IDEA LAB HIGHLIGHT ── */
+  .idealab {
+    background: var(--surface);
+    position: relative;
+    overflow: hidden;
+  }
+
+  .idealab-bg {
+    position: absolute;
+    top: -100px; right: -100px;
+    width: 500px; height: 500px;
+    background: radial-gradient(circle, rgba(124,92,252,0.12) 0%, transparent 70%);
+    border-radius: 50%;
+    filter: blur(60px);
+  }
+
+  .idealab-inner {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 5rem;
+    align-items: center;
+    max-width: 1100px;
+  }
+
+  .idealab-left {}
+
+  .idealab-left p {
+    color: var(--muted);
+    font-size: 0.85rem;
+    line-height: 1.8;
+    margin-bottom: 1.5rem;
+  }
+
+  .tag-row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    margin-bottom: 2rem;
+  }
+
+  .tag {
+    font-size: 0.7rem;
+    letter-spacing: 0.08em;
+    padding: 0.3rem 0.8rem;
+    border: 1px solid var(--border);
+    color: var(--muted);
+    text-transform: uppercase;
+  }
+
+  .idealab-terminal {
+    background: var(--bg);
+    border: 1px solid var(--border);
+    padding: 1.5rem;
+    font-size: 0.78rem;
+  }
+
+  .term-header {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    margin-bottom: 1.2rem;
+    padding-bottom: 0.8rem;
+    border-bottom: 1px solid var(--border);
+  }
+
+  .term-dot { width: 10px; height: 10px; border-radius: 50%; }
+  .td-red { background: #ff5f57; }
+  .td-yellow { background: #febc2e; }
+  .td-green { background: #28c840; }
+  .term-title { color: var(--muted); font-size: 0.7rem; margin-left: 0.5rem; }
+
+  .term-line { margin-bottom: 0.5rem; }
+  .term-prompt { color: var(--accent); }
+  .term-cmd { color: var(--text); }
+  .term-out { color: var(--muted); padding-left: 1rem; }
+  .term-out.ok { color: #28c840; }
+  .term-out.pending { color: var(--accent3); }
+
+  .cursor {
+    display: inline-block;
+    width: 8px; height: 14px;
+    background: var(--accent);
+    vertical-align: middle;
+    animation: blink 1s step-end infinite;
+  }
+
+  @keyframes blink {
+    50% { opacity: 0; }
+  }
+
+  /* ── MARQUEE ── */
+  .marquee-wrap {
+    padding: 1.5rem 0;
+    border-top: 1px solid var(--border);
+    border-bottom: 1px solid var(--border);
+    overflow: hidden;
+    background: var(--bg);
+  }
+
+  .marquee-track {
+    display: flex;
+    gap: 3rem;
+    animation: marquee 20s linear infinite;
+    width: max-content;
+  }
+
+  .marquee-item {
+    font-size: 0.7rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--muted);
+    white-space: nowrap;
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+  }
+
+  .marquee-item::after { content: '·'; color: var(--accent); }
+
+  @keyframes marquee {
+    from { transform: translateX(0); }
+    to { transform: translateX(-50%); }
+  }
+
+  /* ── CTA SECTION ── */
+  .cta-section {
+    background: var(--bg);
+    text-align: center;
+    padding: 8rem 3rem;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .cta-section::before {
+    content: 'GL';
+    position: absolute;
+    font-family: var(--font-display);
+    font-size: 30vw;
+    font-weight: 800;
+    color: rgba(255,255,255,0.02);
+    top: 50%; left: 50%;
+    transform: translate(-50%, -50%);
+    pointer-events: none;
+    letter-spacing: -0.05em;
+  }
+
+  .cta-section h2 { margin: 1rem auto; max-width: 600px; }
+  .cta-section p { color: var(--muted); font-size: 0.85rem; margin-bottom: 2.5rem; }
+
+  .cta-actions { display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap; }
+
+  /* ── FOOTER ── */
+  footer {
+    background: var(--surface);
+    border-top: 1px solid var(--border);
+    padding: 3rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 1.5rem;
+  }
+
+  footer .logo { font-size: 1.1rem; }
+
+  .footer-links { display: flex; gap: 2rem; }
+  .footer-links a { font-size: 0.72rem; color: var(--muted); text-decoration: none; text-transform: uppercase; letter-spacing: 0.1em; }
+  .footer-links a:hover { color: var(--text); }
+
+  .footer-copy { font-size: 0.7rem; color: var(--muted); }
+
+  /* ── ANIMATIONS ── */
+  .fade-up {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: opacity 0.7s ease, transform 0.7s ease;
+  }
+  .fade-up.visible { opacity: 1; transform: translateY(0); }
+
+  @media (max-width: 768px) {
+    nav { padding: 1rem 1.5rem; }
+    nav ul { display: none; }
+    .hero { padding: 7rem 1.5rem 10rem; }
+    .hero-stats { display: none; }
+    section { padding: 4rem 1.5rem; }
+    .idealab-inner { grid-template-columns: 1fr; gap: 3rem; }
+    footer { padding: 2rem 1.5rem; }
+    .footer-links { gap: 1rem; }
+    .steps { grid-template-columns: 1fr; }
+    .steps::before { display: none; }
+    .step { padding: 0; margin-bottom: 2rem; }
+  }
 </style>
 </head>
-
 <body>
 
-<!-- Logo -->
-<div class="header">
-    <img src="logo_white.png" alt="Logo">
-</div>
+<!-- NAV -->
+<nav>
+  <a href="#" class="logo">Genesis<span>Labs</span></a>
+  <ul>
+    <li><a href="#services">Services</a></li>
+    <li><a href="#how">How It Works</a></li>
+    <li><a href="#idealab">Idea Lab</a></li>
+    <li><a href="#contact" class="nav-cta btn">Get Started →</a></li>
+  </ul>
+</nav>
 
-<!-- Contact Button -->
-<a href="https://linkedin.com/in/yash-chavhan" target="_blank" class="contact-btn">
-    Contact
-</a>
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-grid"></div>
+  <div class="hero-glow"></div>
 
-<div class="wrapper">
-    <div class="card">
-        <h1>Under Construction</h1>
-        <p>
-            This website is under construction. Till then, you can work on your ideas,
-            and once we're done, we will bring your idea to life.
-        </p>
+  <div class="hero-tag">genesislabs.in — Est. 2024</div>
 
-        <div class="image-box">
-            <img src="electronics.png" alt="Under Construction">
-        </div>
+  <h1>Build What<br>Doesn't <em>Exist</em><br>Yet.</h1>
+
+  <p class="hero-sub">
+    Custom IoT products, precision 3D printing, and end-to-end prototyping — from raw idea to working device, delivered to your door.
+  </p>
+
+  <div class="hero-actions">
+    <a href="#services" class="btn btn-primary">Explore Services →</a>
+    <a href="#idealab" class="btn btn-secondary">Submit an Idea</a>
+  </div>
+
+  <div class="hero-stats">
+    <div class="stat">
+      <div class="stat-num">100<span>+</span></div>
+      <div class="stat-label">Projects built</div>
     </div>
+    <div class="stat">
+      <div class="stat-num">48<span>h</span></div>
+      <div class="stat-label">Avg. review time</div>
+    </div>
+    <div class="stat">
+      <div class="stat-num">∞</div>
+      <div class="stat-label">Possibilities</div>
+    </div>
+  </div>
+</section>
+
+<!-- MARQUEE -->
+<div class="marquee-wrap">
+  <div class="marquee-track">
+    <span class="marquee-item">3D Printing</span>
+    <span class="marquee-item">IoT Products</span>
+    <span class="marquee-item">Custom Prototypes</span>
+    <span class="marquee-item">Idea to Reality</span>
+    <span class="marquee-item">PCB Design</span>
+    <span class="marquee-item">Embedded Systems</span>
+    <span class="marquee-item">Rapid Prototyping</span>
+    <span class="marquee-item">End-to-End Delivery</span>
+    <span class="marquee-item">3D Printing</span>
+    <span class="marquee-item">IoT Products</span>
+    <span class="marquee-item">Custom Prototypes</span>
+    <span class="marquee-item">Idea to Reality</span>
+    <span class="marquee-item">PCB Design</span>
+    <span class="marquee-item">Embedded Systems</span>
+    <span class="marquee-item">Rapid Prototyping</span>
+    <span class="marquee-item">End-to-End Delivery</span>
+  </div>
 </div>
 
-</body>
-</html>
+<!-- SERVICES -->
+<section class="services" id="services">
+  <div class="services-intro fade-up">
+    <div class="section-label">// 01 — What We Do</div>
+    <h2>Three Ways We Can Help You</h2>
+    <p>Whether you have a finished design file, a half-baked sketch, or just a spark of an idea — we have a path forward for you.</p>
+  </div>
+
+  <div class="services-grid fade-up">
+    <!-- 3D Printing -->
+    <div class="service-card c1">
+      <div class="service-num">01 / 3D Printing</div>
+      <svg class="service-icon" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <rect x="8" y="28" width="32" height="4" rx="1" fill="#00e5a0" opacity="0.3"/>
+        <rect x="12" y="24" width="24" height="4" rx="1" fill="#00e5a0" opacity="0.5"/>
+        <rect x="16" y="20" width="16" height="4" rx="1" fill="#00e5a0" opacity="0.7"/>
+        <rect x="20" y="16" width="8" height="4" rx="1" fill="#00e5a0"/>
+        <rect x="22" y="12" width="4" height="4" rx="1" fill="#00e5a0"/>
+        <line x1="24" y1="8" x2="24" y2="12" stroke="#00e5a0" stroke-width="2"/>
+        <circle cx="24" cy="7" r="2" fill="#00e5a0"/>
+      </svg>
+      <h3>3D Printing</h3>
+      <p>Upload your model or pick from our library. We print in PLA, PETG, ABS, and more — with precision finishing and fast turnaround.</p>
+      <div class="service-links">
+        <a href="#" class="service-link">→ Shop ready-made models</a>
+        <a href="#" class="service-link">→ Upload your own file (.STL / .OBJ)</a>
+      </div>
+    </div>
+
+    <!-- IoT Products -->
+    <div class="service-card c2">
+      <div class="service-num">02 / IoT Products</div>
+      <svg class="service-icon" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <rect x="16" y="16" width="16" height="16" rx="2" fill="none" stroke="#7c5cfc" stroke-width="2"/>
+        <circle cx="24" cy="24" r="3" fill="#7c5cfc"/>
+        <path d="M8 24 Q16 24 16 24" stroke="#7c5cfc" stroke-width="1.5" stroke-dasharray="2 2"/>
+        <path d="M32 24 Q40 24 40 24" stroke="#7c5cfc" stroke-width="1.5" stroke-dasharray="2 2"/>
+        <path d="M24 8 Q24 16 24 16" stroke="#7c5cfc" stroke-width="1.5" stroke-dasharray="2 2"/>
+        <path d="M24 32 Q24 40 24 40" stroke="#7c5cfc" stroke-width="1.5" stroke-dasharray="2 2"/>
+        <circle cx="8" cy="24" r="3" fill="#7c5cfc" opacity="0.6"/>
+        <circle cx="40" cy="24" r="3" fill="#7c5cfc" opacity="0.6"/>
+        <circle cx="24" cy="8" r="3" fill="#7c5cfc" opacity="0.6"/>
+        <circle cx="24" cy="40" r="3" fill="#7c5cfc" opacity="0.6"/>
+      </svg>
+      <h3>IoT Products</h3>
+      <p>Browse our catalogue of ready-to-use smart devices, sensors, and automation kits — or commission a custom electronic build tailored to your needs.</p>
+      <div class="service-links">
+        <a href="#" class="service-link">→ Shop IoT catalogue</a>
+        <a href="#" class="service-link">→ Request custom electronics</a>
+      </div>
+    </div>
+
+    <!-- Idea Lab -->
+    <div class="service-card c3">
+      <div class="service-num">03 / Idea Lab</div>
+      <svg class="service-icon" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <circle cx="24" cy="20" r="10" fill="none" stroke="#ff6b35" stroke-width="2"/>
+        <path d="M20 28 L20 34 L24 38 L28 34 L28 28" fill="none" stroke="#ff6b35" stroke-width="2"/>
+        <line x1="20" y1="32" x2="28" y2="32" stroke="#ff6
