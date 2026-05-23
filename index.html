@@ -207,6 +207,28 @@ html,body{height:100%;overflow:hidden;background:var(--bg);color:var(--white)}
   overflow:hidden;
 }
 
+.contact-link{
+  text-decoration:none;
+}
+
+.contact-btn{
+  background:var(--mg);
+  border:1px solid var(--mg);
+  color:var(--white);
+  font-family:var(--display);
+  font-size:0.85rem;
+  letter-spacing:0.12em;
+  padding:0.8rem 1.4rem;
+  cursor:pointer;
+  transition:background 0.2s,box-shadow 0.2s;
+  white-space:nowrap;
+}
+
+.contact-btn:hover{
+  background:var(--mg2);
+  box-shadow:0 0 24px rgba(255,45,154,0.4);
+}
+
 /* animated circuit SVG bg */
 .circuit-bg{
   position:absolute;
@@ -430,7 +452,8 @@ html,body{height:100%;overflow:hidden;background:var(--bg);color:var(--white)}
   <header class="topbar">
     <div class="logo">GENESIS<em>LABS</em></div>
     <div class="topbar-right">
-      <span><a href="https://linkedin.com/in/yash-chavhan"><button onclick="notify()">Contact</button></a></span>
+      <span><a href="https://linkedin.com/in/yash-chavhan" class="contact-link">
+      <button class="contact-btn">Contact</button></a></span>
       <span>Est. 2026</span>
       <span>Maharashtra, IN</span>
     </div>
