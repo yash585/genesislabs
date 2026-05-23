@@ -1,186 +1,615 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<title>Under Construction</title>
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-<!-- Google Font -->
-<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
-
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+<title>GenesisLabs — Coming Soon</title>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Instrument+Serif:ital@0;1&family=DM+Mono:wght@300;400&display=swap" rel="stylesheet"/>
 <style>
-    * {
-        margin: 0;
-        padding: 0;
-        box-sizing: border-box;
-        font-family: 'Poppins', sans-serif;
-    }
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
 
-    body {
-        min-height: 100vh;
-        background: linear-gradient(135deg, #0f2027, #203a43, #2c5364);
-        color: #fff;
-        overflow-x: hidden;
-    }
+:root{
+  --bg:#080006;
+  --panel:#0d000a;
+  --mg:#d4006f;
+  --mg2:#ff2d9a;
+  --mg3:#ff80c8;
+  --mg4:rgba(212,0,111,0.12);
+  --dim:#3d1428;
+  --muted:#6b3350;
+  --white:#fff4f9;
+  --mono:'DM Mono',monospace;
+  --serif:'Instrument Serif',serif;
+  --display:'Bebas Neue',sans-serif;
+}
 
-    /* Logo */
-    .header {
-        position: absolute;
-        top: 20px;
-        left: 30px;
-    }
+html,body{height:100%;overflow:hidden;background:var(--bg);color:var(--white)}
 
-    .header img {
-        height: 50px;
-    }
+/* ── LAYOUT ── */
+.shell{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  grid-template-rows:auto 1fr auto;
+  height:100vh;
+  position:relative;
+}
 
-    /* Contact Button (Updated) */
-    .contact-btn {
-        position: absolute;
-        top: 20px;
-        right: 30px;
-        padding: 10px 20px;
-        background: linear-gradient(90deg, #3da1ff, #5bc0ff);
-        color: #fff;
-        text-decoration: none;
-        border-radius: 10px;
-        font-weight: 500;
-        transition: all 0.3s ease;
-        box-shadow: 0 6px 18px rgba(0, 0, 0, 0.35);
-        border: 1px solid rgba(255, 255, 255, 0.15);
-    }
+/* ── TOP STRIP ── */
+.topbar{
+  grid-column:1/-1;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  padding:1.4rem 2.8rem;
+  border-bottom:1px solid rgba(212,0,111,0.18);
+  position:relative;
+  z-index:10;
+}
+.logo{
+  font-family:var(--display);
+  font-size:1.15rem;
+  letter-spacing:0.32em;
+  color:var(--white);
+}
+.logo em{color:var(--mg2);font-style:normal}
+.topbar-right{
+  font-family:var(--mono);
+  font-size:0.6rem;
+  letter-spacing:0.22em;
+  color:var(--muted);
+  text-transform:uppercase;
+  display:flex;
+  gap:2.5rem;
+}
+.topbar-right span{color:var(--mg3)}
 
-    .contact-btn:hover {
-        transform: translateY(-2px);
-        box-shadow: 0 10px 25px rgba(0, 0, 0, 0.45);
-        background: linear-gradient(90deg, #5bc0ff, #3da1ff);
-    }
+/* ── LEFT PANEL ── */
+.left{
+  padding:3.5rem 2.8rem;
+  display:flex;
+  flex-direction:column;
+  justify-content:space-between;
+  border-right:1px solid rgba(212,0,111,0.14);
+  position:relative;
+  overflow:hidden;
+}
 
-    /* Main Card */
-    .wrapper {
-        min-height: 100vh;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        padding: 30px;
-    }
+/* Big diagonal text watermark */
+.watermark{
+  position:absolute;
+  font-family:var(--display);
+  font-size:22vw;
+  color:transparent;
+  -webkit-text-stroke:1px rgba(212,0,111,0.07);
+  white-space:nowrap;
+  bottom:-3vw;
+  left:-1vw;
+  letter-spacing:0.04em;
+  pointer-events:none;
+  user-select:none;
+  line-height:1;
+}
 
-    .card {
-        max-width: 900px;
-        width: 100%;
-        background: rgba(255, 255, 255, 0.08);
-        backdrop-filter: blur(12px);
-        border-radius: 20px;
-        padding: 50px 40px;
-        text-align: center;
-        box-shadow: 0 20px 40px rgba(0,0,0,0.3);
-        animation: fadeUp 1.2s ease;
-    }
+.tag{
+  font-family:var(--mono);
+  font-size:0.6rem;
+  letter-spacing:0.28em;
+  text-transform:uppercase;
+  color:var(--mg2);
+  display:flex;
+  align-items:center;
+  gap:0.7rem;
+  animation:up 0.9s 0.2s both;
+}
+.tag::before{
+  content:'';
+  width:28px;height:1px;
+  background:var(--mg2);
+  box-shadow:0 0 8px var(--mg2);
+}
 
-    .card h1 {
-        font-size: 48px;
-        font-weight: 700;
-        background: linear-gradient(90deg, #00f2fe, #4facfe);
-        -webkit-background-clip: text;
-        -webkit-text-fill-color: transparent;
-        margin-bottom: 20px;
-        animation: glow 2.5s infinite alternate;
-    }
+.headline-block{
+  flex:1;
+  display:flex;
+  flex-direction:column;
+  justify-content:center;
+  gap:0;
+  animation:up 0.9s 0.35s both;
+}
+.h-small{
+  font-family:var(--serif);
+  font-style:italic;
+  font-size:clamp(1rem,2vw,1.35rem);
+  color:var(--mg3);
+  font-weight:400;
+  letter-spacing:0.04em;
+  margin-bottom:0.4rem;
+}
+.h-big{
+  font-family:var(--display);
+  font-size:clamp(5rem,10vw,8.5rem);
+  line-height:0.88;
+  letter-spacing:0.02em;
+  color:var(--white);
+  text-shadow:0 0 60px rgba(255,45,154,0.25);
+}
+.h-big .stroke{
+  display:block;
+  color:transparent;
+  -webkit-text-stroke:1.5px var(--mg2);
+  filter:drop-shadow(0 0 14px rgba(255,45,154,0.45));
+}
+.h-sub{
+  margin-top:1.8rem;
+  font-size:0.88rem;
+  color:var(--muted);
+  line-height:1.75;
+  max-width:340px;
+  font-weight:300;
+}
+.h-sub strong{color:var(--mg3);font-weight:400}
 
-    .card p {
-        font-size: 16px;
-        line-height: 1.7;
-        color: #dcdcdc;
-        max-width: 700px;
-        margin: 0 auto 35px auto;
-    }
+/* bottom-left */
+.left-bottom{
+  display:flex;
+  flex-direction:column;
+  gap:1.2rem;
+  animation:up 0.9s 0.55s both;
+}
+.notify-row{
+  display:flex;
+  gap:0;
+  max-width:380px;
+}
+.notify-row input{
+  flex:1;
+  background:rgba(255,255,255,0.03);
+  border:1px solid rgba(212,0,111,0.28);
+  border-right:none;
+  color:var(--white);
+  font-family:var(--mono);
+  font-size:0.74rem;
+  letter-spacing:0.06em;
+  padding:0.8rem 1rem;
+  outline:none;
+  transition:border-color 0.2s;
+}
+.notify-row input::placeholder{color:var(--muted)}
+.notify-row input:focus{border-color:rgba(255,45,154,0.65)}
+.notify-row button{
+  background:var(--mg);
+  border:1px solid var(--mg);
+  color:var(--white);
+  font-family:var(--display);
+  font-size:0.85rem;
+  letter-spacing:0.12em;
+  padding:0.8rem 1.4rem;
+  cursor:pointer;
+  transition:background 0.2s,box-shadow 0.2s;
+  white-space:nowrap;
+}
+.notify-row button:hover{background:var(--mg2);box-shadow:0 0 24px rgba(255,45,154,0.4)}
+.thanks{
+  font-family:var(--mono);
+  font-size:0.62rem;
+  letter-spacing:0.14em;
+  color:var(--mg3);
+  display:none;
+}
 
-    /* Image */
-    .image-box {
-        max-width: 800px;
-        margin: auto;
-        animation: float 4s ease-in-out infinite;
-    }
+/* ── RIGHT PANEL ── */
+.right{
+  padding:3.5rem 2.8rem;
+  display:flex;
+  flex-direction:column;
+  justify-content:space-between;
+  position:relative;
+  overflow:hidden;
+}
 
-    .image-box img {
-        width: 100%;
-        aspect-ratio: 5 / 3;
-        object-fit: cover;
-        border-radius: 16px;
-        box-shadow: 0 15px 35px rgba(0,0,0,0.4);
-    }
+/* animated circuit SVG bg */
+.circuit-bg{
+  position:absolute;
+  inset:0;
+  opacity:1;
+  pointer-events:none;
+}
 
-    /* Animations */
-    @keyframes fadeUp {
-        from {
-            opacity: 0;
-            transform: translateY(40px);
-        }
-        to {
-            opacity: 1;
-            transform: translateY(0);
-        }
-    }
+/* status list */
+.status-list{
+  display:flex;
+  flex-direction:column;
+  gap:0;
+  animation:up 0.9s 0.5s both;
+  position:relative;
+  z-index:2;
+}
+.status-item{
+  display:flex;
+  align-items:flex-start;
+  gap:1.2rem;
+  padding:1.1rem 0;
+  border-bottom:1px solid rgba(212,0,111,0.1);
+  position:relative;
+}
+.status-item:first-child{border-top:1px solid rgba(212,0,111,0.1)}
+.s-num{
+  font-family:var(--mono);
+  font-size:0.58rem;
+  color:var(--mg);
+  letter-spacing:0.1em;
+  padding-top:0.15rem;
+  min-width:24px;
+}
+.s-body{}
+.s-name{
+  font-family:var(--display);
+  font-size:1.05rem;
+  letter-spacing:0.08em;
+  color:var(--white);
+  margin-bottom:0.2rem;
+}
+.s-desc{
+  font-size:0.75rem;
+  color:var(--muted);
+  line-height:1.5;
+  font-weight:300;
+}
+.s-badge{
+  margin-left:auto;
+  font-family:var(--mono);
+  font-size:0.55rem;
+  letter-spacing:0.14em;
+  text-transform:uppercase;
+  padding:0.3rem 0.7rem;
+  border:1px solid;
+  white-space:nowrap;
+  align-self:center;
+}
+.s-badge.done{color:var(--mg3);border-color:rgba(255,128,200,0.3);background:rgba(255,45,154,0.06)}
+.s-badge.wip{color:var(--mg2);border-color:rgba(255,45,154,0.4);background:rgba(255,45,154,0.08);box-shadow:0 0 10px rgba(255,45,154,0.15);animation:pulse 2s ease-in-out infinite}
+.s-badge.pending{color:var(--dim);border-color:rgba(61,20,40,0.6)}
+@keyframes pulse{0%,100%{box-shadow:0 0 10px rgba(255,45,154,0.15)}50%{box-shadow:0 0 20px rgba(255,45,154,0.35)}}
 
-    @keyframes glow {
-        from {
-            text-shadow: 0 0 10px rgba(79,172,254,0.5);
-        }
-        to {
-            text-shadow: 0 0 25px rgba(0,242,254,0.9);
-        }
-    }
+/* big countdown / number display */
+.right-bottom{
+  position:relative;
+  z-index:2;
+  animation:up 0.9s 0.7s both;
+}
+.countdown-label{
+  font-family:var(--mono);
+  font-size:0.58rem;
+  letter-spacing:0.24em;
+  color:var(--muted);
+  text-transform:uppercase;
+  margin-bottom:0.8rem;
+}
+.countdown-row{
+  display:flex;
+  gap:1.5rem;
+  align-items:flex-end;
+}
+.c-unit{display:flex;flex-direction:column;align-items:center;gap:0.2rem}
+.c-num{
+  font-family:var(--display);
+  font-size:clamp(2.5rem,5vw,4rem);
+  line-height:1;
+  color:var(--white);
+  text-shadow:0 0 30px rgba(255,45,154,0.3);
+  min-width:2.5ch;
+  text-align:center;
+}
+.c-label{
+  font-family:var(--mono);
+  font-size:0.55rem;
+  letter-spacing:0.18em;
+  color:var(--dim);
+  text-transform:uppercase;
+}
+.c-sep{
+  font-family:var(--display);
+  font-size:3rem;
+  color:var(--mg);
+  line-height:1;
+  margin-bottom:0.5rem;
+  opacity:0.6;
+  animation:blink 1s step-end infinite;
+}
+@keyframes blink{0%,100%{opacity:0.6}50%{opacity:0}}
 
-    @keyframes float {
-        0% { transform: translateY(0); }
-        50% { transform: translateY(-10px); }
-        100% { transform: translateY(0); }
-    }
+/* ── BOTTOM STRIP ── */
+.bottombar{
+  grid-column:1/-1;
+  border-top:1px solid rgba(212,0,111,0.18);
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  padding:0.9rem 2.8rem;
+}
+.progress-track{
+  display:flex;
+  align-items:center;
+  gap:1.2rem;
+  flex:1;
+  max-width:440px;
+}
+.p-label{
+  font-family:var(--mono);
+  font-size:0.58rem;
+  letter-spacing:0.18em;
+  color:var(--muted);
+  text-transform:uppercase;
+  white-space:nowrap;
+}
+.p-bar{
+  flex:1;
+  height:2px;
+  background:rgba(212,0,111,0.14);
+  position:relative;
+  overflow:hidden;
+}
+.p-fill{
+  position:absolute;
+  top:0;left:0;bottom:0;
+  width:0;
+  background:linear-gradient(to right,var(--mg),var(--mg2));
+  box-shadow:0 0 12px var(--mg2);
+  transition:width 2s cubic-bezier(0.4,0,0.2,1);
+}
+.p-pct{
+  font-family:var(--display);
+  font-size:0.95rem;
+  letter-spacing:0.1em;
+  color:var(--mg3);
+  min-width:3ch;
+  text-align:right;
+}
+.b-domain{
+  font-family:var(--mono);
+  font-size:0.6rem;
+  letter-spacing:0.22em;
+  color:var(--dim);
+  text-transform:uppercase;
+}
+.b-domain strong{color:var(--mg);font-weight:400}
+.b-links{display:flex;gap:2rem}
+.b-links a{
+  font-family:var(--mono);
+  font-size:0.58rem;
+  letter-spacing:0.16em;
+  color:var(--muted);
+  text-transform:uppercase;
+  text-decoration:none;
+  transition:color 0.2s;
+}
+.b-links a:hover{color:var(--mg3)}
 
-    /* Mobile */
-    @media (max-width: 600px) {
-        .card h1 {
-            font-size: 36px;
-        }
-        .card {
-            padding: 35px 25px;
-        }
+/* animations */
+@keyframes up{
+  from{opacity:0;transform:translateY(20px)}
+  to{opacity:1;transform:translateY(0)}
+}
 
-        .contact-btn {
-            top: 15px;
-            right: 15px;
-            padding: 8px 16px;
-            font-size: 14px;
-        }
-    }
+/* ── CIRCUIT LINES (animated SVG) ── */
+.circuit-line{
+  stroke:rgba(212,0,111,0.18);
+  stroke-width:1;
+  fill:none;
+  stroke-dasharray:6 3;
+  animation:dashMove 8s linear infinite;
+}
+.circuit-line.fast{animation-duration:5s}
+.circuit-line.glow{
+  stroke:rgba(255,45,154,0.35);
+  filter:drop-shadow(0 0 4px rgba(255,45,154,0.5));
+  stroke-dasharray:4 12;
+}
+.circuit-dot{fill:var(--mg2);filter:drop-shadow(0 0 5px rgba(255,45,154,0.8))}
+@keyframes dashMove{
+  from{stroke-dashoffset:0}
+  to{stroke-dashoffset:-60}
+}
+
+/* ── MOBILE ── */
+@media(max-width:700px){
+  .shell{grid-template-columns:1fr;grid-template-rows:auto 1fr auto auto auto;overflow-y:auto;height:auto;min-height:100vh}
+  html,body{overflow:auto}
+  .right{border-top:1px solid rgba(212,0,111,0.14)}
+  .topbar-right span:not(:first-child){display:none}
+  .b-links,.b-domain{display:none}
+  .watermark{font-size:40vw}
+}
 </style>
 </head>
-
 <body>
 
-<!-- Logo -->
-<div class="header">
-    <img src="logo_white.png" alt="Logo">
-</div>
+<div class="shell">
 
-<!-- Contact Button -->
-<a href="https://linkedin.com/in/yash-chavhan" target="_blank" class="contact-btn">
-    Contact
-</a>
-
-<div class="wrapper">
-    <div class="card">
-        <h1>Under Construction</h1>
-        <p>
-            This website is under construction. Till then, you can work on your ideas,
-            and once we're done, we will bring your idea to life.
-        </p>
-
-        <div class="image-box">
-            <img src="electronics.png" alt="Under Construction">
-        </div>
+  <!-- TOP BAR -->
+  <header class="topbar">
+    <div class="logo">GENESIS<em>LABS</em></div>
+    <div class="topbar-right">
+      <span>genesislabs.in</span>
+      <span>Est. 2025</span>
+      <span>Hyderabad, IN</span>
     </div>
+  </header>
+
+  <!-- LEFT -->
+  <div class="left">
+    <div class="watermark">GL</div>
+
+    <div class="tag">Under Construction</div>
+
+    <div class="headline-block">
+      <div class="h-small">Something is being built</div>
+      <div class="h-big">
+        WE'RE<br>
+        <span class="stroke">ALMOST</span>
+        THERE
+      </div>
+      <p class="h-sub">
+        Custom <strong>IoT devices</strong>, 3D prints, and a lab that turns
+        your raw concepts into working products — launching soon.
+      </p>
+    </div>
+
+    <div class="left-bottom">
+      <div class="notify-row">
+        <input type="email" id="em" placeholder="your@email.com" />
+        <button onclick="notify()">Notify Me</button>
+      </div>
+      <div class="thanks" id="thanks">✓  You're on the list. We'll reach out at launch.</div>
+    </div>
+  </div>
+
+  <!-- RIGHT -->
+  <div class="right">
+
+    <!-- Circuit decoration -->
+    <svg class="circuit-bg" viewBox="0 0 500 600" preserveAspectRatio="xMidYMid slice" xmlns="http://www.w3.org/2000/svg">
+      <line class="circuit-line" x1="60" y1="0" x2="60" y2="600"/>
+      <line class="circuit-line fast" x1="200" y1="0" x2="200" y2="600"/>
+      <line class="circuit-line" x1="380" y1="0" x2="380" y2="600"/>
+      <line class="circuit-line" x1="0" y1="120" x2="500" y2="120"/>
+      <line class="circuit-line fast" x1="0" y1="300" x2="500" y2="300"/>
+      <line class="circuit-line" x1="0" y1="460" x2="500" y2="460"/>
+      <!-- glowing accent lines -->
+      <line class="circuit-line glow" x1="60" y1="120" x2="200" y2="120"/>
+      <line class="circuit-line glow fast" x1="200" y1="300" x2="380" y2="300"/>
+      <line class="circuit-line glow" x1="60" y1="460" x2="380" y2="460"/>
+      <!-- dots at intersections -->
+      <circle class="circuit-dot" cx="60" cy="120" r="3"/>
+      <circle class="circuit-dot" cx="200" cy="120" r="2"/>
+      <circle class="circuit-dot" cx="200" cy="300" r="3"/>
+      <circle class="circuit-dot" cx="380" cy="300" r="2"/>
+      <circle class="circuit-dot" cx="60"  cy="460" r="2"/>
+      <circle class="circuit-dot" cx="380" cy="460" r="3"/>
+    </svg>
+
+    <!-- Build status -->
+    <div class="status-list">
+      <div class="status-item">
+        <div class="s-num">01</div>
+        <div class="s-body">
+          <div class="s-name">Brand & Identity</div>
+          <div class="s-desc">Logo, palette, design system</div>
+        </div>
+        <div class="s-badge done">Done</div>
+      </div>
+      <div class="status-item">
+        <div class="s-num">02</div>
+        <div class="s-body">
+          <div class="s-name">3D Print Studio</div>
+          <div class="s-desc">Catalogue, custom upload flow</div>
+        </div>
+        <div class="s-badge done">Done</div>
+      </div>
+      <div class="status-item">
+        <div class="s-num">03</div>
+        <div class="s-body">
+          <div class="s-name">IoT Shop</div>
+          <div class="s-desc">Product listings, orders</div>
+        </div>
+        <div class="s-badge wip">In Progress</div>
+      </div>
+      <div class="status-item">
+        <div class="s-num">04</div>
+        <div class="s-body">
+          <div class="s-name">Idea Lab</div>
+          <div class="s-desc">Submission & review portal</div>
+        </div>
+        <div class="s-badge pending">Pending</div>
+      </div>
+      <div class="status-item">
+        <div class="s-num">05</div>
+        <div class="s-body">
+          <div class="s-name">Launch</div>
+          <div class="s-desc">Go live on genesislabs.in</div>
+        </div>
+        <div class="s-badge pending">Pending</div>
+      </div>
+    </div>
+
+    <!-- Countdown -->
+    <div class="right-bottom">
+      <div class="countdown-label">// launching in</div>
+      <div class="countdown-row">
+        <div class="c-unit">
+          <div class="c-num" id="cd-d">00</div>
+          <div class="c-label">Days</div>
+        </div>
+        <div class="c-sep">:</div>
+        <div class="c-unit">
+          <div class="c-num" id="cd-h">00</div>
+          <div class="c-label">Hours</div>
+        </div>
+        <div class="c-sep">:</div>
+        <div class="c-unit">
+          <div class="c-num" id="cd-m">00</div>
+          <div class="c-label">Mins</div>
+        </div>
+        <div class="c-sep">:</div>
+        <div class="c-unit">
+          <div class="c-num" id="cd-s">00</div>
+          <div class="c-label">Secs</div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- BOTTOM BAR -->
+  <footer class="bottombar">
+    <div class="progress-track">
+      <div class="p-label">Build progress</div>
+      <div class="p-bar"><div class="p-fill" id="pfill"></div></div>
+      <div class="p-pct">62%</div>
+    </div>
+    <div class="b-domain"><strong>genesis</strong>labs.in</div>
+    <div class="b-links">
+      <a href="#">Instagram</a>
+      <a href="mailto:hello@genesislabs.in">Email</a>
+    </div>
+  </footer>
+
 </div>
 
+<script>
+  // Progress bar animate in
+  setTimeout(() => { document.getElementById('pfill').style.width = '62%'; }, 300);
+
+  // Countdown — set your target date here
+  const target = new Date('2025-09-01T00:00:00');
+  function tick() {
+    const now  = new Date();
+    const diff = Math.max(0, target - now);
+    const d = Math.floor(diff / 86400000);
+    const h = Math.floor((diff % 86400000) / 3600000);
+    const m = Math.floor((diff % 3600000)  / 60000);
+    const s = Math.floor((diff % 60000)    / 1000);
+    const pad = n => String(n).padStart(2,'0');
+    document.getElementById('cd-d').textContent = pad(d);
+    document.getElementById('cd-h').textContent = pad(h);
+    document.getElementById('cd-m').textContent = pad(m);
+    document.getElementById('cd-s').textContent = pad(s);
+  }
+  tick();
+  setInterval(tick, 1000);
+
+  // Notify
+  function notify() {
+    const v = document.getElementById('em').value.trim();
+    const inp = document.getElementById('em');
+    if (!v || !v.includes('@')) {
+      inp.style.borderColor = 'rgba(255,45,154,0.9)';
+      setTimeout(() => inp.style.borderColor = '', 1200);
+      return;
+    }
+    document.querySelector('.notify-row').style.display = 'none';
+    document.getElementById('thanks').style.display = 'block';
+  }
+</script>
 </body>
 </html>
